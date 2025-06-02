@@ -10,7 +10,7 @@ void Assignment::init(){
         Scene::createInstance();
         Scene::instance()->init(m_pApp);
         srand(static_cast<unsigned>(time(0)));
-        int numberCubes = 75 + (rand() % 21);
+        int numberCubes = 300 + (rand() % 21);
         std::vector<Node*> whatCubes;
 
         for (size_t i = 0; i < numberCubes; i++){  

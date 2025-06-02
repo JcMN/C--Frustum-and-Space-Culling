@@ -200,13 +200,9 @@ bool App::isMMBDown() const
 
 glm::vec2 App::getMousePos() const
 {
-    //Keep last mouse position after toggle of capture mouse
-    if (!m_bMouseCapture){  
-        double xpos, ypos;
-        glfwGetCursorPos(m_pWindow, &xpos, &ypos);
-        return glm::vec2((float(xpos)), (float)ypos);
-    }
-    return glm::vec2(m_width / 2.0f, m_height / 2.0f);
+    double xpos, ypos;
+    glfwGetCursorPos(m_pWindow, &xpos, &ypos);
+    return glm::vec2((float)xpos,(float)ypos);
 }
 
 glm::vec2 App::getScreenSize() const
@@ -222,13 +218,11 @@ void App::_setMouseScroll(const glm::vec2& scroll)
 }
 //Capture the mouse and add support to toggle
 void App::captureCursor(){
-    if (m_bMouseCapture){
-        glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);   
-    } else {
-        glfwSetCursorPos(m_pWindow, m_width / 2.0f, m_height / 2.0f);
-        glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-    }
-    m_bMouseCapture = !m_bMouseCapture;
+    glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);   
 }
 
+
+void App::stopCaptureCursor(){
+    glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
 }

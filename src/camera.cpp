@@ -35,14 +35,23 @@ glm::mat4 Camera::getProjMatrix(int p_iWidth, int p_iHeight) const{
 }
 
 void Camera::update(float p_fDT){
-    updateCameraVectors();
-    mouseMovement(true);
-    m_vLastMousePos = m_pApp->getMousePos();
-    keyboardMovement(p_fDT);
+    if (m_pApp->isKeyJustDown('P') || m_pApp-> isKeyJustDown('p')){
+        m_bToggle = !m_bToggle;
+    }
+     else if (m_bToggle){
+        m_pApp->captureCursor();
+        updateCameraVectors();
+        mouseMovement(true);
+        m_vLastMousePos = m_pApp->getMousePos();
+        keyboardMovement(p_fDT);
+    } else if(!m_bToggle){
+        m_pApp->stopCaptureCursor();
+    }
 }
 
 void Camera::render(const glm::mat4 &p_mView, const glm::mat4 &p_mProj){
     //Does not do anything but maybe later on work as a debug renderer for the frustum
+    // Could be used to render frustum maybe at some point?
 }
 
 void Camera::updateBoundingVolume(){
@@ -89,16 +98,16 @@ void Camera::keyboardMovement(float p_fDT){
 
     if(m_pApp->isKeyDown(340)){
         if (m_pApp->isKeyDown('w') || m_pApp->isKeyDown('W')){
-            m_vPos += m_vFront * currentVelocity * 2.0f;
+            m_vPos += m_vFront * currentVelocity * 20.0f;
         }
         if (m_pApp->isKeyDown('s') || m_pApp->isKeyDown('S')){
-            m_vPos -= m_vFront * currentVelocity * 2.0f;
+            m_vPos -= m_vFront * currentVelocity * 20.0f;
         }
         if (m_pApp->isKeyDown('a') || m_pApp->isKeyDown('A')){
-            m_vPos -= m_vRight * currentVelocity * 2.0f;
+            m_vPos -= m_vRight * currentVelocity * 20.0f;
         }
         if (m_pApp->isKeyDown('d') || m_pApp->isKeyDown('D')){
-            m_vPos += m_vRight * currentVelocity * 2.0f;
+            m_vPos += m_vRight * currentVelocity * 20.0f;
         } 
     }
     if (m_pApp->isKeyDown('w') || m_pApp->isKeyDown('W')){

@@ -33,6 +33,7 @@ namespace wolf
 
         //Capture the cursor for mouse movement
         void captureCursor();
+        void stopCaptureCursor();
         
 
     protected:

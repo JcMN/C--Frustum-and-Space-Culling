@@ -53,6 +53,8 @@ class Camera : public Node{
         float m_fFarPlane;
 
         wolf::App* m_pApp;
+
+        bool m_bToggle = true;
 };
 
 #endif
