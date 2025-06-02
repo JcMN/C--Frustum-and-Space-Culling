@@ -22,3 +22,4 @@ Also not all visualitions of the bounding volumes seem to be correct but the cul
 
 #Run 
 To run you need CMAKE on Visual Studio Code, delete the build folder, and Configure with the Visual Studio compiler and Build. Then just run Debug with CMAKE and a window should opne with the program running
+
